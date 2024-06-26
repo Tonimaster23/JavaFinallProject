@@ -74,6 +74,27 @@ public class Main {
         String tipo = scanner.next();
         System.out.print("Custo de Mana: ");
         int custoMana = scanner.nextInt();
-        scanner.nextLine(); // consumir a nova linha   
+        scanner.nextLine();
+
+        try {
+            if (tipo.equalsIgnoreCase("ataque")) {
+                System.out.print("Dano: ");
+                int dano = scanner.nextInt();
+                scanner.nextLine(); 
+                cartas.add(new CartaAtaque(titulo, descricao, raridade, poder, tipo, custoMana, dano));
+            } else if (tipo.equalsIgnoreCase("defesa")) {
+                System.out.print("Defesa: ");
+                int defesa = scanner.nextInt();
+                scanner.nextLine(); 
+                cartas.add(new CartaDefesa(titulo, descricao, raridade, poder, tipo, custoMana, defesa));
+            } else if (tipo.equalsIgnoreCase("suporte")) {
+                cartas.add(new CartaSuporte(titulo, descricao, raridade, poder, tipo, custoMana));
+            } else {
+                throw new CadastroInvalidoException("Tipo de carta inválido.");
+            }
+
 
 }
+
+
+

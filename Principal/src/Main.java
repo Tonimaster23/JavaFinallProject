@@ -93,6 +93,60 @@ public class Main {
                 throw new CadastroInvalidoException("Tipo de carta inválido.");
             }
 
+            if (contarCopias(titulo, cartas) > 3) {
+                throw new CadastroInvalidoException("Não é permitido mais de três cópias da mesma carta.");
+            }
+
+            System.out.println("Carta cadastrada com sucesso!");
+        } catch (CadastroInvalidoException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static int contarCopias(String titulo, List<Carta> cartas) {
+        int count = 0;
+        for (Carta carta : cartas) {
+            if (carta.getTitulo().equalsIgnoreCase(titulo)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private static void organizarCartas(Scanner scanner, List<Carta> cartas) {
+        System.out.println("Organizar cartas por:");
+        System.out.println("1. Raridade");
+        System.out.println("2. Tipo");
+        System.out.println("3. Poder");
+        System.out.println("4. Custo de Mana");
+        System.out.print("Escolha uma opção: ");
+        int opcao = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (opcao) {
+            case 1:
+                cartas.sort((c1, c2) -> c1.getRaridade().compareTo(c2.getRaridade()));
+                break;
+            case 2:
+                cartas.sort((c1, c2) -> c1.getTipo().compareTo(c2.getTipo()));
+                break;
+            case 3:
+                cartas.sort((c1, c2) -> Integer.compare(c1.getPoder(), c2.getPoder()));
+                break;
+            case 4:
+                cartas.sort((c1, c2) -> Integer.compare(c1.getCustoMana(), c2.getCustoMana()));
+                break;
+            default:
+                System.out.println("Opção inválida.");
+                return;
+        }
+        System.out.println("Cartas organizadas com sucesso!");
+        cartas.forEach(System.out::println);
+
+    }
+
+
+
 
 }
 

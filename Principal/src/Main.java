@@ -144,6 +144,56 @@ public class Main {
         cartas.forEach(System.out::println);
 
     }
+    private static void criarDeck(Scanner scanner, List<Carta> cartas, List<Deck> decks) {
+        System.out.print("Nome do Deck: ");
+        String nome = scanner.nextLine();
+        Deck deck = new Deck(nome);
+
+        while (deck.getCartas().size() < 20) {
+            System.out.println("Selecione uma carta pelo título (ou 'sair' para finalizar): ");
+            String titulo = scanner.nextLine();
+
+            if (titulo.equalsIgnoreCase("sair")) {
+                break;
+            }
+
+            Carta cartaSelecionada = cartas.stream()
+                .filter(c -> c.getTitulo().equalsIgnoreCase(titulo))
+                .findFirst()
+                .orElse(null);
+
+            if (cartaSelecionada != null) {
+                deck.adicionarCarta(cartaSelecionada);
+            } else {
+                System.out.println("Carta não encontrada.");
+            }
+        }
+
+        decks.add(deck);
+        System.out.println("Deck criado com sucesso!");
+    }
+
+    private static void simularBatalha(Scanner scanner, List<Deck> decks, SimuladorBatalha simulador) {
+        System.out.println("Selecione o primeiro deck pelo nome: ");
+        String nomeDeck1 = scanner.nextLine();
+        Deck deck1 = decks.stream()
+            .filter(d -> d.getNome().equalsIgnoreCase(nomeDeck1))
+            .findFirst()
+            .orElse(null);
+
+        System.out.println("Selecione o segundo deck pelo nome: ");
+        String nomeDeck2 = scanner.nextLine();
+        Deck deck2 = decks.stream()
+            .filter(d -> d.getNome().equalsIgnoreCase(nomeDeck2))
+            .findFirst()
+            .orElse(null);
+
+        if (deck1 != null && deck2 != null) {
+            simulador.simularBatalha(deck1, deck2);
+        } else {
+            System.out.println("Um ou ambos os decks não foram encontrados.");
+        }
+    }
 
 
 

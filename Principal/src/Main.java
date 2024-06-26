@@ -61,4 +61,19 @@ public class Main {
         System.out.print("Escolha uma opção: ");
     }
 
+    private static void cadastrarCarta(Scanner scanner, List<Carta> cartas) {
+        System.out.print("Título: ");
+        String titulo = scanner.nextLine();
+        System.out.print("Descrição: ");
+        String descricao = scanner.nextLine();
+        System.out.print("Raridade (comum, rara, épica, lendária): ");
+        String raridade = scanner.nextLine();
+        System.out.print("Poder: ");
+        int poder = scanner.nextInt();
+        System.out.print("Tipo (ataque, defesa, suporte): ");
+        String tipo = scanner.next();
+        System.out.print("Custo de Mana: ");
+        int custoMana = scanner.nextInt();
+        scanner.nextLine(); // consumir a nova linha   
+
 }

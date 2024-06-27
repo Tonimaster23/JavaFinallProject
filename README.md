@@ -60,7 +60,7 @@ O ChatGPT foi utilizado no desenvolvimento do projeto para:
 - Auxiliar na definição da estrutura do projeto.
 - Fornecer exemplos de código e boas práticas.
 - dar ideias de como fazer um bom jogo de cartas.
-- Gerar a documentação do projeto, incluindo este README.
+- Ajudando na documentação do projeto, incluindo este README.
 
 
 

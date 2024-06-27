@@ -195,6 +195,16 @@ public class Main {
         }
     }
 
+    private static void salvarDados(List<Carta> cartas, List<Deck> decks) {
+        Persistencia.salvarCartas(cartas, "cartas.dat");
+        for (Deck deck : decks) {
+            Persistencia.salvarDeck(deck, deck.getNome() + ".dat");
+        }
+        System.out.println("Dados salvos com sucesso!");
+    }
+
+    
+
 
 
 

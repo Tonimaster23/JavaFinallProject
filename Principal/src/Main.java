@@ -203,9 +203,26 @@ public class Main {
         System.out.println("Dados salvos com sucesso!");
     }
 
-    
+    private static void carregarDados(List<Carta> cartas, List<Deck> decks) {
+        List<Carta> cartasCarregadas = Persistencia.carregarCartas("cartas.dat");
+        if (cartasCarregadas != null) {
+            cartas.clear();
+            cartas.addAll(cartasCarregadas);
+            System.out.println("Cartas carregadas com sucesso!");
+        } else {
+            System.out.println("Falha ao carregar cartas.");
+        }
 
-
+        String[] nomesDecks = {"Deck1", "Deck2"}; // Exemplos de nomes de decks
+    decks.clear();
+    for (String nomeDeck : nomesDecks) {
+        Deck deck = Persistencia.carregarDeck(nomeDeck + ".dat");
+        if (deck != null) {
+            decks.add(deck);
+        }
+    }
+    System.out.println("Decks carregados com sucesso!");
+}
 
 
 }
